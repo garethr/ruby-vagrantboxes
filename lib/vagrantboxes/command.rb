@@ -10,8 +10,9 @@ module Vagrantboxes
     register "vagrantboxes","Interact with the vagrantbox.es list of boxes"
 
     desc "search [TERM]", "Find a box"
+    method_option :api, :default => ENDPOINT
     def search(term=nil)
-      url = "#{ENDPOINT}/boxes.json"
+      url = "#{options[:api]/boxes.json"
       if term
         url = "#{url}?q=#{term}"
       end
@@ -27,10 +28,11 @@ module Vagrantboxes
     end
 
     desc "show [ID]", "Show all information for a given box"
+    method_option :api, :default => ENDPOINT
     def show(id=nil)
   
       if id =~ /^[-+]?[0-9]+$/
-        url = "#{ENDPOINT}/boxes/#{id}.json"
+        url = "#{options[:api]}/boxes/#{id}.json"
         resp = Net::HTTP.get_response(URI.parse(url))
         if resp.code == "200"
           data = resp.body
@@ -44,10 +46,10 @@ module Vagrantboxes
     end
 
     desc "url [ID]", "Return the URL for a given box"
+    method_option :api, :default => ENDPOINT
     def url(id=nil)
-  
       if id =~ /^[-+]?[0-9]+$/
-        url = "#{ENDPOINT}/boxes/#{id}.json"
+        url = "#{options[:api]}/boxes/#{id}.json"
         resp = Net::HTTP.get_response(URI.parse(url))
         if resp.code == "200"
           data = resp.body
