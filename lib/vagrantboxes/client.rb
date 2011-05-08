@@ -1,6 +1,9 @@
 require 'cgi'
 require 'json'
 require 'net/http'
+require 'vagrant/environment'
+require 'vagrant/box'
+
 
 module Vagrantboxes
   
@@ -41,6 +44,16 @@ module Vagrantboxes
         puts result['url']
         puts
         puts result['description']
+      end
+    end
+
+    def self.add(id, api_url)
+      base = api_url ? api_url : ENDPOINT
+      if id =~ /^[-+]?[0-9]+$/
+        url = "#{base}/boxes/#{id}.json"
+        result = request(url)
+        env = Vagrant::Environment.new
+        Vagrant::Box.add(env, result['title'], result['url'])
       end
     end
 
