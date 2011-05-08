@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["gareth@morethanseven.net"]
   s.homepage    = "http://vagrantbox.es"
   s.summary     = %q{Vagrant extension to download boxes from vagrantbox.es}
-  s.description = %q{Vagrant extension to download boxes from vagrantbox.es}
+  s.description = %q{Vagrant extension to search and download boxes from vagrantbox.es}
 
   s.rubyforge_project = "vagrantboxes"
 
