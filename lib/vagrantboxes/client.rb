@@ -1,3 +1,7 @@
+require 'cgi'
+require 'json'
+require 'net/http'
+
 module Vagrantboxes
   
   ENDPOINT = "http://api2.vagrantbox.es"
@@ -8,7 +12,7 @@ module Vagrantboxes
       base = api_url ? api_url : ENDPOINT
       url = "#{base}/boxes.json"
       if term
-        url = "#{url}?q=#{term}"
+        url = "#{url}?q=#{CGI.escape(term)}"
       end
       results = request(url)
       results.sort! { |a,b| a['id'] <=> b['id'] }

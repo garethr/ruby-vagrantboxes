@@ -1,11 +1,6 @@
-require 'json'
-require 'net/http'
 require 'vagrantboxes/client'
 
-
 module Vagrantboxes
-
-  
   class Command < Vagrant::Command::GroupBase
     register "vagrantboxes","Interact with the vagrantbox.es list of boxes"
 
