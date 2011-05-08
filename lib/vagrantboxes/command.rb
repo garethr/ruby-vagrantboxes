@@ -18,7 +18,7 @@ module Vagrantboxes
       results = JSON.parse(data)
 
       results.each { |result|
-        puts result['title']
+        puts "#{result['id'].to_s.ljust(4)} #{result['title'].ljust(25)} #{result['url']}"
       }
     end
 
