@@ -10,12 +10,8 @@ module Vagrantboxes
       if term
         url = "#{url}?q=#{term}"
       end
-      resp = Net::HTTP.get_response(URI.parse(url))
-      data = resp.body
-
-      results = JSON.parse(data)
+      results = request(url)
       results.sort! { |a,b| a['id'] <=> b['id'] }
-
       results.each { |result|
         puts "#{result['id'].to_s.ljust(4)} #{result['title'].ljust(25)} #{result['url']}"
       }
@@ -44,7 +40,7 @@ module Vagrantboxes
       end
     end
 
-    def request(url)
+    def self.request(url)
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body
       resp.code == "200" ? JSON.parse(data) : nil
