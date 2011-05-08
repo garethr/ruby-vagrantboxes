@@ -4,7 +4,7 @@ module Vagrantboxes
 
   module Client
 
-    def search(term, api_url)
+    def self.search(term, api_url)
       base = api_url ? api_url : ENDPOINT
       url = "#{base}/boxes.json"
       if term
