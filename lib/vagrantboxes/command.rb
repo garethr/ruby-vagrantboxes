@@ -17,7 +17,7 @@ module Vagrantboxes
 
       results = JSON.parse(data)
 
-      result.each { |result|
+      results.each { |result|
         puts result['title']
       }
     end
