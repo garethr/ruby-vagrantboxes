@@ -1,62 +1,30 @@
 require 'json'
 require 'net/http'
+require 'vagrantboxes/client'
+
 
 module Vagrantboxes
 
-  ENDPOINT = "http://api2.vagrantbox.es"
   
   class Command < Vagrant::Command::GroupBase
     register "vagrantboxes","Interact with the vagrantbox.es list of boxes"
 
     desc "search [TERM]", "Find a box"
-    method_option :api, :default => ENDPOINT
+    method_option :api
     def search(term=nil)
-      url = "#{options[:api]}/boxes.json"
-      if term
-        url = "#{url}?q=#{term}"
-      end
-      resp = Net::HTTP.get_response(URI.parse(url))
-      data = resp.body
-
-      results = JSON.parse(data)
-      results.sort! { |a,b| a['id'] <=> b['id'] }
-
-      results.each { |result|
-        puts "#{result['id'].to_s.ljust(4)} #{result['title'].ljust(25)} #{result['url']}"
-      }
+      Vagrantboxes::Client.search(term, options[:api])
     end
 
     desc "show [ID]", "Show all information for a given box"
-    method_option :api, :default => ENDPOINT
+    method_option :api
     def show(id=nil)
-  
-      if id =~ /^[-+]?[0-9]+$/
-        url = "#{options[:api]}/boxes/#{id}.json"
-        resp = Net::HTTP.get_response(URI.parse(url))
-        if resp.code == "200"
-          data = resp.body
-          result = JSON.parse(data)
-          puts
-          puts result['title']
-          puts result['url']
-          puts
-          puts result['description']
-        end
-      end
+      Vagrantboxes::Client.show(id, options[:api])
     end
 
     desc "url [ID]", "Return the URL for a given box"
-    method_option :api, :default => ENDPOINT
+    method_option :api
     def url(id=nil)
-      if id =~ /^[-+]?[0-9]+$/
-        url = "#{options[:api]}/boxes/#{id}.json"
-        resp = Net::HTTP.get_response(URI.parse(url))
-        if resp.code == "200"
-          data = resp.body
-          result = JSON.parse(data)
-          puts result['url']
-        end
-      end
+      Vagrantboxes::Client.url(id, options[:api])
     end
   end
 
