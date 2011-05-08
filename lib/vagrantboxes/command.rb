@@ -31,11 +31,7 @@ module Vagrantboxes
   
       if id =~ /^[-+]?[0-9]+$/
         url = "#{ENDPOINT}/boxes/#{id}.json"
-
         resp = Net::HTTP.get_response(URI.parse(url))
-        
-        puts resp.code
-
         if resp.code == "200"
           data = resp.body
           result = JSON.parse(data)
