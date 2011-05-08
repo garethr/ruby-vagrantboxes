@@ -3,10 +3,9 @@ require 'net/http'
 
 module Vagrantboxes
 
+  ENDPOINT = "http://api2.vagrantbox.es"
+  
   class Command < Vagrant::Command::GroupBase
-
-    ENDPOINT = "http://api2.vagrantbox.es"
-
     register "vagrantboxes","Interact with the vagrantbox.es list of boxes"
 
     desc "search [TERM]", "Find a box"
@@ -37,6 +36,7 @@ module Vagrantboxes
         if resp.code == "200"
           data = resp.body
           result = JSON.parse(data)
+          puts
           puts result['title']
           puts result['url']
           puts
