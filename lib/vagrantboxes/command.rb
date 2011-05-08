@@ -12,7 +12,7 @@ module Vagrantboxes
     desc "search [TERM]", "Find a box"
     method_option :api, :default => ENDPOINT
     def search(term=nil)
-      url = "#{options[:api]/boxes.json"
+      url = "#{options[:api]}/boxes.json"
       if term
         url = "#{url}?q=#{term}"
       end
