@@ -19,6 +19,7 @@ module Vagrantboxes
       data = resp.body
 
       results = JSON.parse(data)
+      results.sort! { |a,b| a['id'] <=> b['id'] }
 
       results.each { |result|
         puts "#{result['id'].to_s.ljust(4)} #{result['title'].ljust(25)} #{result['url']}"
