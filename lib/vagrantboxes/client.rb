@@ -51,9 +51,9 @@ module Vagrantboxes
       if id =~ /^[-+]?[0-9]+$/
         url = "#{base}/boxes/#{id}.json"
         result = request(url)
-        #env = Vagrant::Environment.new
-        #env.ui = Vagrant::UI::Shell.new(env, Thor::Base.shell.new)
-        #env.load!
+        env = Vagrant::Environment.new
+        env.ui = Vagrant::UI::Shell.new(env, Thor::Base.shell.new)
+        env.load!
         Vagrant::Box.add(env, result['title'], result['url'])
       end
     end
