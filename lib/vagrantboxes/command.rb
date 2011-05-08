@@ -36,7 +36,7 @@ module Vagrantboxes
         
         puts resp.code
 
-        if resp.code == 200
+        if resp.code == "200"
           data = resp.body
           result = JSON.parse(data)
           puts result['url']
