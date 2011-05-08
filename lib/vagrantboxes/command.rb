@@ -12,6 +12,9 @@ module Vagrantboxes
     desc "search [TERM]", "Find a box"
     def search(term=nil)
       url = "#{ENDPOINT}/boxes.json"
+      if term
+        url = "#{url}?q=#{term}"
+      end
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body
 
