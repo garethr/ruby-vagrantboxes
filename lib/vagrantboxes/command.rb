@@ -26,6 +26,17 @@ module Vagrantboxes
       }
     end
 
+    desc "url [ID]", "Return the URL for a given box"
+    def url(id=nil)
+      url = "#{ENDPOINT}/boxes/#{id}.json"
+
+      resp = Net::HTTP.get_response(URI.parse(url))
+      data = resp.body
+
+      result = JSON.parse(data)
+
+      puts result['url']
+    end
   end
 
 end
