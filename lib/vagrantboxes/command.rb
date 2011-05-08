@@ -25,7 +25,14 @@ module Vagrantboxes
     desc "add [ID]", "Download and add the box to your vagrant installation"
     method_option :api
     def add(id=nil)
-      Vagrantboxes::Client.add(id, options[:api])
+      base = options[:api] ? options[:api] : ENDPOINT
+      if id =~ /^[-+]?[0-9]+$/
+        url = "#{base}/boxes/#{id}.json"
+        result = request(url)
+        env = Vagrant::Environment.new
+        Vagrant::Box.add(env, result['title'], result['url'])
+      end
+      #Vagrantboxes::Client.add(id, options[:api])
     end
 
   end
