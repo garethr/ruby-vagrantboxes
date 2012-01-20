@@ -51,10 +51,8 @@ module Vagrantboxes
       if id =~ /^[-+]?[0-9]+$/
         url = "#{base}/boxes/#{id}.json"
         result = request(url)
-        env = Vagrant::Environment.new
-        env.ui = Vagrant::UI::Shell.new(env, Thor::Base.shell.new)
-        env.load!
-        Vagrant::Box.add(env, result['title'], result['url'])
+        ui_class = Vagrant::Util::Platform.terminal_supports_colors? ? Vagrant::UI::Colored : Vagrant::UI::Basic
+        Vagrant::Environment.new(:ui_class => ui_class).boxes.add(result['title'], result['url'])
       end
     end
 
