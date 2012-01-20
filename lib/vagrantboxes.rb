@@ -1,2 +1,7 @@
 require 'vagrant'
 require 'vagrantboxes/command/boxes'
+require 'vagrantboxes/command/base'
+require 'vagrantboxes/command/boxes_add'
+require 'vagrantboxes/command/boxes_search'
+require 'vagrantboxes/command/boxes_show'
+require 'vagrantboxes/command/boxes_url'

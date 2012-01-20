@@ -4,18 +4,18 @@ This application extends the [vagrant](http://vagrantup.com) command line tool t
 
 ## Usage
 
-- List all currently available boxes: <pre>vagrant vagrantboxes search</pre>
-- Do simple text searches: <pre>vagrant vagrantboxes search centos </pre>
-- Do slightly more complex text searches: <pre>vagrant vagrantboxes search "debian puppet" </pre>
-- Show all the details of a particular box: <pre>vagrant vagrantboxes show 1</pre>
-- Show only the url of a particular box: <pre>vagrant vagrantboxes url 1</pre>
-- Download a box listed on vagrantbox.es: <pre>vagrant vagrantboxes add 1</pre>
+- List all currently available boxes: <pre>vagrant boxes search</pre>
+- Do simple text searches: <pre>vagrant boxes search centos </pre>
+- Do slightly more complex text searches: <pre>vagrant boxes search "debian puppet" </pre>
+- Show all the details of a particular box: <pre>vagrant boxes show 1</pre>
+- Show only the url of a particular box: <pre>vagrant boxes url 1</pre>
+- Download a box listed on vagrantbox.es: <pre>vagrant boxes add 1</pre>
 
 ## Example
 
 Here's a simple example of the output:
 
-<pre>vagrant vagrantboxes search centos
+<pre>vagrant boxes search centos
 3    centos 5.5                http://dl.dropbox.com/u/15307300/vagrant-0.7-centos-64-base.box
 6    opscode centos 5          http://opscode-vagrant-boxes.s3.amazonaws.com/centos5-gems.box
 7    opscode ubuntu 10.04      http://opscode-vagrant-boxes.s3.amazonaws.com/ubuntu10.04-gems.box
