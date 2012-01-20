@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "vagrantboxes"
 
-  s.add_dependency "vagrant", "~> 0.7.0"
+  s.add_dependency "vagrant", "~> 0.9"
   s.add_dependency "json"
 
   s.add_development_dependency "bundler", ">= 1.0.0"

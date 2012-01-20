@@ -1,2 +1,2 @@
 require 'vagrant'
-require 'vagrantboxes/command'
+require 'vagrantboxes/command/boxes'
