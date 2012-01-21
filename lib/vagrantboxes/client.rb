@@ -51,7 +51,7 @@ module Vagrantboxes
       if id =~ /^[-+]?[0-9]+$/
         url = "#{base}/boxes/#{id}.json"
         result = request(url)
-        ui_class = Vagrant::Util::Platform.terminal_supports_colors? ? Vagrant::UI::Colored : Vagrant::UI::Basic
+        ui_class = !$stdout.tty? || ARGV.include?("--no-color") || Vagrant::Util::Platform.terminal_supports_colors? ? Vagrant::UI::Colored : Vagrant::UI::Basic
         Vagrant::Environment.new(:ui_class => ui_class).boxes.add(result['title'], result['url'])
       end
     end
