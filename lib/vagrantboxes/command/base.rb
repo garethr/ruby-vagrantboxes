@@ -17,12 +17,6 @@ module Vagrantboxes
         argv
       end
 
-      def help
-        h = super
-        require "ruby-debug"; debugger;
-        h
-      end
-
     end
   end
 end
